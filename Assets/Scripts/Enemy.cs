@@ -12,12 +12,25 @@ public class Enemy : MonoBehaviour
     public GameObject enemy;
     public Animator animator;
     private bool isDead;
+    public Renderer[] renderers;
+    public Material flashMaterial;
+    public float flashDuration = 0.1f;
+    private Material[][] originalMaterials;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = animator.GetComponent<Rigidbody>();
         isDead = false;
+        originalMaterials = new Material[renderers.Length][];
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            originalMaterials[i] = new Material[renderers[i].materials.Length];
+            for (int j = 0; j < renderers[i].materials.Length; j++)
+            {
+                originalMaterials[i][j] = renderers[i].materials[j];
+            }
+        }
     }
 
     private void Update()
@@ -57,7 +70,31 @@ public class Enemy : MonoBehaviour
         {   
             animator.SetTrigger("Hit");
             health = health - 25;
+            StartCoroutine(FlashRed());
         }
     }
+
+    IEnumerator FlashRed()
+    {
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            Material[] flashMaterials = new Material[originalMaterials[i].Length];
+
+            for (int j = 0; j < flashMaterials.Length; j++)
+            {
+                flashMaterials[j] = flashMaterial;
+            }
+
+            renderers[i].materials = flashMaterials;
+        }
+
+        yield return new WaitForSeconds(flashDuration);
+
+        for (int i = 0; i < renderers.Length; i++)
+        {
+            renderers[i].materials = originalMaterials[i];
+        }
+    }
+
 
 }
