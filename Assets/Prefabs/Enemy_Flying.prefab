@@ -11,17 +11,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: f94bcf7eca09d70429488eefd8661974,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 1.8244224
+      value: 1.3728961
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f94bcf7eca09d70429488eefd8661974,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 1.8244224
+      value: 1.3728961
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f94bcf7eca09d70429488eefd8661974,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 1.8244224
+      value: 1.3728961
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: f94bcf7eca09d70429488eefd8661974,
         type: 3}
@@ -330,6 +330,9 @@ MonoBehaviour:
   health: 100
   enemy: {fileID: 6426833949933458567}
   animator: {fileID: 4280902296303599058}
+  renderers: []
+  flashMaterial: {fileID: 0}
+  flashDuration: 0.1
 --- !u!95 &4280902296303599058
 Animator:
   serializedVersion: 5

@@ -3137,6 +3137,11 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 8391fa407578ddc47b9fbd3a2d613e9e, type: 2}
     - target: {fileID: 2747993656578419862, guid: d58c5c108964dc14297d34af1be4c8d8,
         type: 3}
+      propertyPath: detectionAttackRange
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2747993656578419862, guid: d58c5c108964dc14297d34af1be4c8d8,
+        type: 3}
       propertyPath: renderers.Array.size
       value: 2
       objectReference: {fileID: 0}

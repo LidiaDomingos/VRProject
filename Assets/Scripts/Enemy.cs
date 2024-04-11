@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     Rigidbody rb;
     public float moveSpeed = 3f; 
     public float detectionRange = 10f; 
+    public float detectionAttackRange = 3f; 
     public float health = 100f; 
     public GameObject enemy;
     public Animator animator;
@@ -16,7 +17,7 @@ public class Enemy : MonoBehaviour
     public Material flashMaterial;
     public float flashDuration = 0.1f;
     private Material[][] originalMaterials;
-
+    private float cooldownTimer = 0f;
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -33,7 +34,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if (health <= 0 && !isDead){
             animator.SetTrigger("Death");
@@ -56,16 +57,21 @@ public class Enemy : MonoBehaviour
                     rb.MovePosition(newPos);
                 }
             }
-            else
-            {
-                animator.SetBool("Walk", false);
+            if (Vector3.Distance(transform.position, player.position) <= detectionAttackRange){
+                cooldownTimer -= Time.deltaTime;
+                if (cooldownTimer <= 0)
+                {
+                    cooldownTimer = 5;
+                    animator.SetTrigger("Attack");
+                }
             }
+
+            
         }
     }
 
     void OnTriggerEnter(Collider collider)
     {
-        Debug.Log(collider);
         if (collider.CompareTag("weapon"))
         {   
             animator.SetTrigger("Hit");
