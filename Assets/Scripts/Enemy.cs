@@ -49,7 +49,7 @@ public class Enemy : MonoBehaviour
                 if (rb.position.x < player.position.x){
                     Vector3 target = new Vector3(player.position.x - 1, player.position.y, player.position.z - 1);
                     Vector3 newPos = Vector3.MoveTowards(rb.position, target, moveSpeed * Time.fixedDeltaTime);
-                    rb.MovePosition(newPos);
+                    rb.MovePosition(newPos);    
                 }
                 else {
                     Vector3 target = new Vector3(player.position.x + 1, player.position.y, player.position.z + 1);
@@ -61,6 +61,7 @@ public class Enemy : MonoBehaviour
                 cooldownTimer -= Time.deltaTime;
                 if (cooldownTimer <= 0)
                 {
+                    player.GetComponent<PlayerLogic>().health -= 10;
                     cooldownTimer = 5;
                     animator.SetTrigger("Attack");
                 }
