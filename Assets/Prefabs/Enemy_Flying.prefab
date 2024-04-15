@@ -279,6 +279,18 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2408156819834663929}
   m_SourcePrefab: {fileID: 100100000, guid: f94bcf7eca09d70429488eefd8661974, type: 3}
+--- !u!137 &896846691012583985 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 6450254094538066919, guid: f94bcf7eca09d70429488eefd8661974,
+    type: 3}
+  m_PrefabInstance: {fileID: 6192971467294599638}
+  m_PrefabAsset: {fileID: 0}
+--- !u!137 &4242851176378699762 stripped
+SkinnedMeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 8003028576119023140, guid: f94bcf7eca09d70429488eefd8661974,
+    type: 3}
+  m_PrefabInstance: {fileID: 6192971467294599638}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6426833949933458567 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: f94bcf7eca09d70429488eefd8661974,
@@ -327,11 +339,14 @@ MonoBehaviour:
   player: {fileID: 1370408025781586694, guid: 37ed69d570284274a9ffed7a16f23f56, type: 3}
   moveSpeed: 3
   detectionRange: 10
+  detectionAttackRange: 3
   health: 100
   enemy: {fileID: 6426833949933458567}
   animator: {fileID: 4280902296303599058}
-  renderers: []
-  flashMaterial: {fileID: 0}
+  renderers:
+  - {fileID: 896846691012583985}
+  - {fileID: 4242851176378699762}
+  flashMaterial: {fileID: 2100000, guid: 8391fa407578ddc47b9fbd3a2d613e9e, type: 2}
   flashDuration: 0.1
 --- !u!95 &4280902296303599058
 Animator:
