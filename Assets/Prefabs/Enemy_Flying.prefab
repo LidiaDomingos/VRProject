@@ -327,6 +327,7 @@ MonoBehaviour:
   player: {fileID: 1370408025781586694, guid: 37ed69d570284274a9ffed7a16f23f56, type: 3}
   moveSpeed: 3
   detectionRange: 10
+  detectionAttackRange: 3
   health: 100
   enemy: {fileID: 6426833949933458567}
   animator: {fileID: 4280902296303599058}

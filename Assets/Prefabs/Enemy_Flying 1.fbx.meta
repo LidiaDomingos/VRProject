@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f94bcf7eca09d70429488eefd8661974
+guid: f40859dd80e2fd04f902e88b77da8c67
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -96,14 +96,7 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events:
-      - time: 0.9933444
-        functionName: NewEvent
-        data: 
-        objectReferenceParameter: {instanceID: 0}
-        floatParameter: 0
-        intParameter: 0
-        messageOptions: 0
+      events: []
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}
