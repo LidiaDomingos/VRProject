@@ -5,7 +5,6 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class ActiveParticles : MonoBehaviour
 {
-    public ParticleSystem particles;
     public GameObject projectilePrefab; // Prefab do projetil
     public Transform shootSource; // Ponto de origem do disparo
     public LayerMask layerMask;
@@ -21,8 +20,6 @@ public class ActiveParticles : MonoBehaviour
 
     public void StartShoot()
     {
-        // particles.Play();
-
         // Instancia o projetil no ponto de origem do disparo
         GameObject projectileInstance = Instantiate(projectilePrefab, shootSource.position, Quaternion.identity);
 
