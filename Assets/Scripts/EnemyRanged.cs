@@ -2,30 +2,34 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyRanged : MonoBehaviour
 {
     public Transform player; 
     Rigidbody rb;
     public float moveSpeed = 3f; 
-    public float detectionRange = 10f; 
-    public float detectionAttackRange = 3f; 
+    private float detectionRange = 30f; 
+    private float detectionAttackRange = 8f; 
     public float health = 100f; 
     public GameObject enemy;
-    public Animator animator;
     private bool isDead;
+
+    //flash red when hit
     public Renderer[] renderers;
     public Material flashMaterial;
     public float flashDuration = 0.1f;
     private Material[][] originalMaterials;
     private float cooldownTimer = 0f;
+    public Animator animator;
 
-    public AudioClip death_audio;
-    public AudioClip damage_audio;
-    private AudioSource audioSource;
+    //projectiles 
+    public GameObject projectilePrefab;
+    public Transform shootSource;
+    public float projectileSpeed = 10;
+
+    public bool isAttacking = false;
 
     private void Start()
     {
-        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = animator.GetComponent<Rigidbody>();
         isDead = false;
@@ -44,7 +48,6 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0 && !isDead){
             animator.SetTrigger("Death");
-            audioSource.PlayOneShot(death_audio);
             isDead = true;
             SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
             if (spawnManager != null)
@@ -54,10 +57,10 @@ public class Enemy : MonoBehaviour
             Destroy(enemy, 3f);
         }
         else if (!isDead){
-            if (Vector3.Distance(transform.position, player.position) <= detectionRange)
+            transform.LookAt(player);
+            if (Vector3.Distance(transform.position, player.position) <= detectionRange && Vector3.Distance(transform.position, player.position) > detectionAttackRange)
             {
-                animator.SetBool("Walk", true);
-                transform.LookAt(player);
+                animator.SetBool("Idle", false);
                 if (rb.position.x < player.position.x){
                     Vector3 target = new Vector3(player.position.x - 1, player.position.y, player.position.z - 1);
                     Vector3 newPos = Vector3.MoveTowards(rb.position, target, moveSpeed * Time.fixedDeltaTime);
@@ -69,6 +72,9 @@ public class Enemy : MonoBehaviour
                     rb.MovePosition(newPos);
                 }
             }
+            else {
+                animator.SetBool("Idle", true);
+            }
             if (Vector3.Distance(transform.position, player.position) <= detectionAttackRange){
                 cooldownTimer -= Time.deltaTime;
                 if (cooldownTimer <= 0)
@@ -76,6 +82,8 @@ public class Enemy : MonoBehaviour
                     player.GetComponent<PlayerLogic>().health -= 10;
                     cooldownTimer = 5;
                     animator.SetTrigger("Attack");
+
+                    Attack();
                 }
             }
 
@@ -89,7 +97,6 @@ public class Enemy : MonoBehaviour
         {   
             animator.SetTrigger("Hit");
             health = health - 25;
-            audioSource.PlayOneShot(damage_audio);
             StartCoroutine(FlashRed());
         }
     }
@@ -116,5 +123,27 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    private void Attack(){
+        GameObject projectileInstance = Instantiate(projectilePrefab, shootSource.position, Quaternion.identity);
+        
+        projectileInstance.SetActive(true);
+        StartCoroutine(MoveProjectile(projectileInstance, shootSource.forward));
+    }
+
+    private IEnumerator MoveProjectile(GameObject projectile, Vector3 direction)
+    {
+        float elapsedTime = 0f;
+
+        while (elapsedTime < 3f && projectile != null) // Tempo de vida do projétil (ajuste conforme necessário)
+        {
+            float step = projectileSpeed * Time.deltaTime;
+            projectile.transform.Translate(direction * step);
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        Destroy(projectile);
+    }
 
 }

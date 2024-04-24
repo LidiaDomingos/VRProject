@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f40859dd80e2fd04f902e88b77da8c67
+guid: aba084290928a3f44a7ae181bce01552
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -7,43 +7,38 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Dark
+    second: {fileID: 2100000, guid: 6558cb49749d9f54ea5310a191160e44, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Edge
-    second: {fileID: 2100000, guid: 1e3a692e30b462744960e153ab4cb749, type: 2}
+    second: {fileID: 2100000, guid: 7d12632551d317740ae53803204c1c1b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Eye
+    second: {fileID: 2100000, guid: 9623485e243969141af8286ee18c1cd1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Grey
+    second: {fileID: 2100000, guid: ed547dd4a322a744bab80c1092c50dad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: LightGrey
+    second: {fileID: 2100000, guid: be3ac3a714552cb448f7936bb7768f67, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Main
-    second: {fileID: 2100000, guid: 6254fed30d96f8e4e8e2d538592bd574, type: 2}
+    second: {fileID: 2100000, guid: d79dbd8cbb8e8034ca2f4a45f96e5466, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Main2
-    second: {fileID: 2100000, guid: 938c7a97c42061241b0b91bc4a69b825, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material
-    second: {fileID: 2100000, guid: 8391fa407578ddc47b9fbd3a2d613e9e, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.001
-    second: {fileID: 2100000, guid: c4ce0c9ec6d58444a95ab90b59442bfa, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.002
-    second: {fileID: 2100000, guid: b8c78319f6bd22f4c979f1f680ebf1d1, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.003
-    second: {fileID: 2100000, guid: d9e475cef79a8584db71ebdbf48bbffe, type: 2}
-  - first:
-      type: UnityEngine:Material
-      assembly: UnityEngine.CoreModule
-      name: Material.004
-    second: {fileID: 2100000, guid: f31ba44d12c98314e87a8b5675dc78db, type: 2}
+    second: {fileID: 2100000, guid: 33abbf09db1b86849ab2aa94a2db290d, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
@@ -77,14 +72,14 @@ ModelImporter:
       takeName: CharacterArmature|Attack
       internalID: 7674154492727649536
       firstFrame: 0
-      lastFrame: 23
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -102,11 +97,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: CharacterArmature|Dead
-      takeName: CharacterArmature|Dead
-      internalID: -8962682184670050497
+      name: CharacterArmature|Death
+      takeName: CharacterArmature|Death
+      internalID: 4447012609936615250
       firstFrame: 0
-      lastFrame: 11
+      lastFrame: 19
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -160,11 +155,11 @@ ModelImporter:
       maskSource: {instanceID: 0}
       additiveReferencePoseFrame: 0
     - serializedVersion: 16
-      name: CharacterArmature|Run
-      takeName: CharacterArmature|Run
-      internalID: 1395189703230314720
+      name: CharacterArmature|Jump
+      takeName: CharacterArmature|Jump
+      internalID: 140615187318258251
       firstFrame: 0
-      lastFrame: 20
+      lastFrame: 15
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -172,6 +167,35 @@ ModelImporter:
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: CharacterArmature|Run
+      takeName: CharacterArmature|Run
+      internalID: 1395189703230314720
+      firstFrame: 0
+      lastFrame: 15
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -200,7 +224,7 @@ ModelImporter:
       cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
-      loopTime: 1
+      loopTime: 0
       loopBlend: 0
       loopBlendOrientation: 0
       loopBlendPositionY: 0
@@ -222,7 +246,7 @@ ModelImporter:
       takeName: CharacterArmature|Walk
       internalID: -5599002979973759676
       firstFrame: 0
-      lastFrame: 35
+      lastFrame: 40
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
