@@ -27,7 +27,7 @@ public class SpawnManager : MonoBehaviour
 
         if (enemiesDefeated >= enemiesPerWave)
         {
-            if (currentWave < totalWaves - 1)
+            if (currentWave <= totalWaves)
             {
                 StartNextWave();
             }
