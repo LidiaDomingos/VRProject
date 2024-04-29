@@ -18,8 +18,14 @@ public class Enemy : MonoBehaviour
     public float flashDuration = 0.1f;
     private Material[][] originalMaterials;
     private float cooldownTimer = 0f;
+
+    public AudioClip death_audio;
+    public AudioClip damage_audio;
+    private AudioSource audioSource;
+
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         rb = animator.GetComponent<Rigidbody>();
         isDead = false;
@@ -38,7 +44,13 @@ public class Enemy : MonoBehaviour
     {
         if (health <= 0 && !isDead){
             animator.SetTrigger("Death");
+            audioSource.PlayOneShot(death_audio);
             isDead = true;
+            SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
+            if (spawnManager != null)
+            {
+                spawnManager.EnemyDefeated();
+            }
             Destroy(enemy, 3f);
         }
         else if (!isDead){
@@ -49,7 +61,7 @@ public class Enemy : MonoBehaviour
                 if (rb.position.x < player.position.x){
                     Vector3 target = new Vector3(player.position.x - 1, player.position.y, player.position.z - 1);
                     Vector3 newPos = Vector3.MoveTowards(rb.position, target, moveSpeed * Time.fixedDeltaTime);
-                    rb.MovePosition(newPos);
+                    rb.MovePosition(newPos);    
                 }
                 else {
                     Vector3 target = new Vector3(player.position.x + 1, player.position.y, player.position.z + 1);
@@ -61,6 +73,7 @@ public class Enemy : MonoBehaviour
                 cooldownTimer -= Time.deltaTime;
                 if (cooldownTimer <= 0)
                 {
+                    player.GetComponent<PlayerLogic>().health -= 10;
                     cooldownTimer = 5;
                     animator.SetTrigger("Attack");
                 }
@@ -76,6 +89,7 @@ public class Enemy : MonoBehaviour
         {   
             animator.SetTrigger("Hit");
             health = health - 25;
+            audioSource.PlayOneShot(damage_audio);
             StartCoroutine(FlashRed());
         }
     }
