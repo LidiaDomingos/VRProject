@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     public TextMeshProUGUI WaveCount;
 
     public int totalWaves = 5; 
-    private int baseEnemiesPerWave = 3; 
+    private int baseEnemiesPerWave = 2; 
     private int enemiesPerWave; 
     private int currentWave = 0;
     private int enemiesSpawned = 0;
