@@ -68,11 +68,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: CharacterArmature|Attack
-      takeName: CharacterArmature|Attack
+      name: CharacterArmature|Shoot (1)
+      takeName: CharacterArmature|Shoot
       internalID: 7674154492727649536
       firstFrame: 0
-      lastFrame: 40
+      lastFrame: 8
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -236,7 +236,15 @@ ModelImporter:
       mirror: 0
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
-      events: []
+      events:
+      - time: 0.34059945
+        functionName: audioPlays.PlayAudioClip()
+        data: 
+        objectReferenceParameter: {fileID: 1011967363507036940, guid: 178ce44359f0c1a46b5f3dd03aaffa87,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

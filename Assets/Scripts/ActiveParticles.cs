@@ -10,12 +10,13 @@ public class ActiveParticles : MonoBehaviour
     public LayerMask layerMask;
     public float distance = 10;
     public float projectileSpeed = 10; // Velocidade do projetil
-
+    AudioSource audioSource;
 
     void Start()
     {
         XRGrabInteractable grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.activated.AddListener(x => StartShoot());
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void StartShoot()
@@ -24,6 +25,7 @@ public class ActiveParticles : MonoBehaviour
         GameObject projectileInstance = Instantiate(projectilePrefab, shootSource.position, Quaternion.identity);
 
         projectileInstance.SetActive(true);
+        audioSource.Play();
         StartCoroutine(MoveProjectile(projectileInstance, -shootSource.forward));
     }
 

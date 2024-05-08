@@ -8,14 +8,16 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] enemyPrefabs;
     public Transform[] spawnPoints;
     public TextMeshProUGUI WaveCount;
+    public SceneTransitionManager sceneScript;
 
-    public int totalWaves = 5; 
+    private int totalWaves = 2; 
     private int baseEnemiesPerWave = 2; 
     private int enemiesPerWave; 
-    private int currentWave = 0;
+    private int currentWave = 1;
     private int enemiesSpawned = 0;
     private int enemiesDefeated = 0;
 
+    private bool End = false;
     void Start()
     {
         StartNextWave();
@@ -31,12 +33,15 @@ public class SpawnManager : MonoBehaviour
             {
                 StartNextWave();
             }
-            else
-            {
-                Debug.Log("All waves completed!");
-               
+            else {
+                if (!End){
+                    sceneScript.GoToSceneAsync(0);
+                    End = true;
+                }
             }
         }
+
+    
     }
 
     void StartNextWave()
