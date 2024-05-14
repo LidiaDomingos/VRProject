@@ -9,12 +9,15 @@ public class GameStartMenu : MonoBehaviour
     public GameObject mainMenu;
     public GameObject options;
     public GameObject about;
+    public GameObject leaderboard;
 
     [Header("Main Menu Buttons")]
     public Button startButton;
     public Button optionButton;
     public Button aboutButton;
+    public Button leaderboardButton;
     public Button quitButton;
+
 
     public List<Button> returnButtons;
 
@@ -25,6 +28,7 @@ public class GameStartMenu : MonoBehaviour
 
         //Hook events
         startButton.onClick.AddListener(StartGame);
+        leaderboardButton.onClick.AddListener(EnableLeaderboard);
         optionButton.onClick.AddListener(EnableOption);
         aboutButton.onClick.AddListener(EnableAbout);
         quitButton.onClick.AddListener(QuitGame);
@@ -58,6 +62,7 @@ public class GameStartMenu : MonoBehaviour
         mainMenu.SetActive(true);
         options.SetActive(false);
         about.SetActive(false);
+        leaderboard.SetActive(false);
     }
     public void EnableOption()
     {
@@ -70,5 +75,10 @@ public class GameStartMenu : MonoBehaviour
         mainMenu.SetActive(false);
         options.SetActive(false);
         about.SetActive(true);
+    }
+    public void EnableLeaderboard()
+    {
+        mainMenu.SetActive(false);
+        leaderboard.SetActive(true);
     }
 }
