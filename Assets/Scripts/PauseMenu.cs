@@ -9,6 +9,7 @@ public class PauseMenu : MonoBehaviour
     public GameObject wristUI;
 
     public bool activeWristUI = true;
+    //public XRRayInteractor rayInteractor; 
     // Start is called before the first frame  update
     void Start()
     {

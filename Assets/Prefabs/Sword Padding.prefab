@@ -34,6 +34,7 @@ Transform:
   m_Children:
   - {fileID: 3072349615793462381}
   - {fileID: 2169704744091569242}
+  - {fileID: 757216372180584540}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &5429288839869884419
@@ -252,3 +253,34 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &8376545263275238582
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 757216372180584540}
+  m_Layer: 0
+  m_Name: SwordReset
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &757216372180584540
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8376545263275238582}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.7071068, y: -0.7071068, z: -7.224714e-10, w: -0.000000017675877}
+  m_LocalPosition: {x: 0.052366726, y: 4.6035852, z: -0.019640727}
+  m_LocalScale: {x: 1.128402, y: 1.128402, z: 1.128402}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3433454843155528723}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

@@ -10,7 +10,6 @@ public class EnemyRanged : MonoBehaviour
     private float detectionRange = 30f; 
     private float detectionAttackRange = 8f; 
     public float health = 100f; 
-    public GameObject enemy;
     private bool isDead;
 
     //flash red when hit
@@ -24,13 +23,19 @@ public class EnemyRanged : MonoBehaviour
     //projectiles 
     public GameObject projectilePrefab;
     public Transform shootSource;
-    public float projectileSpeed = 10;
+    public float projectileSpeed = 10f;
 
     public bool isAttacking = false;
+
+    public AudioClip death_audio;
+    public AudioClip damage_audio;
+    public AudioClip shoot_audio;
+    private AudioSource audioSource;
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        audioSource = GetComponent<AudioSource>();
         rb = animator.GetComponent<Rigidbody>();
         isDead = false;
         originalMaterials = new Material[renderers.Length][];
@@ -46,7 +51,8 @@ public class EnemyRanged : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (health <= 0 && !isDead){
+        if (health <= 0f && !isDead){
+            audioSource.PlayOneShot(death_audio);
             animator.SetTrigger("Death");
             isDead = true;
             SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
@@ -54,7 +60,7 @@ public class EnemyRanged : MonoBehaviour
             {
                 spawnManager.EnemyDefeated();
             }
-            Destroy(enemy, 3f);
+            Destroy(gameObject, 1.5f);
         }
         else if (!isDead){
             transform.LookAt(player);
@@ -77,12 +83,13 @@ public class EnemyRanged : MonoBehaviour
             }
             if (Vector3.Distance(transform.position, player.position) <= detectionAttackRange){
                 cooldownTimer -= Time.deltaTime;
-                if (cooldownTimer <= 0)
+                if (cooldownTimer <= 0f)
                 {
-                    player.GetComponent<PlayerLogic>().health -= 10;
-                    cooldownTimer = 5;
+                    if (!player.GetComponent<PlayerLogic>().isPlayerDead){
+                        player.GetComponent<PlayerLogic>().health -= 10f;
+                    }
+                    cooldownTimer = 5f;
                     animator.SetTrigger("Attack");
-
                     Attack();
                 }
             }
@@ -93,11 +100,13 @@ public class EnemyRanged : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("weapon"))
+        if (collider.CompareTag("weapon") && !isDead)
         {   
+            audioSource.PlayOneShot(damage_audio);
             animator.SetTrigger("Hit");
-            health = health - 25;
+            health = health - 25f;
             StartCoroutine(FlashRed());
+            Destroy(collider.gameObject);
         }
     }
 
@@ -128,6 +137,7 @@ public class EnemyRanged : MonoBehaviour
         
         projectileInstance.SetActive(true);
         StartCoroutine(MoveProjectile(projectileInstance, shootSource.forward));
+        audioSource.PlayOneShot(shoot_audio);
     }
 
     private IEnumerator MoveProjectile(GameObject projectile, Vector3 direction)

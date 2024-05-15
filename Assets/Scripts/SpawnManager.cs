@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        WaveCount.text = (currentWave).ToString();
+        WaveCount.text = "Wave: " + (currentWave - 1).ToString();
 
         if (enemiesDefeated >= enemiesPerWave)
         {
@@ -83,6 +83,6 @@ public class SpawnManager : MonoBehaviour
 
     public void EnemyDefeated()
     {
-        enemiesDefeated= enemiesDefeated+1;
+        enemiesDefeated = enemiesDefeated + 1;
     }
 }
