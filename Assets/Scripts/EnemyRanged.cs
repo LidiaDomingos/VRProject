@@ -86,7 +86,7 @@ public class EnemyRanged : MonoBehaviour
                 if (cooldownTimer <= 0f)
                 {
                     if (!player.GetComponent<PlayerLogic>().isPlayerDead){
-                        player.GetComponent<PlayerLogic>().health -= 10f;
+                        player.GetComponent<PlayerLogic>().health -= 5f;
                     }
                     cooldownTimer = 5f;
                     animator.SetTrigger("Attack");
@@ -105,8 +105,8 @@ public class EnemyRanged : MonoBehaviour
             audioSource.PlayOneShot(damage_audio);
             animator.SetTrigger("Hit");
             health = health - 25f;
-            StartCoroutine(FlashRed());
             Destroy(collider.gameObject);
+            StartCoroutine(FlashRed());
         }
     }
 

@@ -13,6 +13,7 @@ public class HealBoy : MonoBehaviour
     private bool isNear = false;
     private bool isDead = false;
     public AudioClip damage_audio;
+    public AudioClip heal_audio;
     private AudioSource audioSource;
 
     // Start is called before the first frame update
@@ -51,13 +52,14 @@ public class HealBoy : MonoBehaviour
     private void Heal(){
         if (!player.GetComponent<PlayerLogic>().isPlayerDead){
             player.GetComponent<PlayerLogic>().health += 10f;
+            audioSource.PlayOneShot(heal_audio);
             isDead = true;
             SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
             if (spawnManager != null)
             {
                 spawnManager.EnemyDefeated();
             }
-            Destroy(gameObject, 1.5f);
+            Destroy(gameObject, 2f);
         }
     }
 
@@ -74,8 +76,8 @@ public class HealBoy : MonoBehaviour
             {
                 spawnManager.EnemyDefeated();
             }
-            Destroy(collider.gameObject, 1.5f);
-            Destroy(gameObject, 1.5f);
+            Destroy(collider.gameObject);
+            Destroy(gameObject, 2f);
         }
     }
 

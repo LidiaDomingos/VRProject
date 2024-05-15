@@ -836,6 +836,8 @@ MonoBehaviour:
   - {fileID: 6426833949933458567, guid: d58c5c108964dc14297d34af1be4c8d8, type: 3}
   - {fileID: 2347802323947658802, guid: 487a6bd67ce146b428e0d8aba5ff7f13, type: 3}
   - {fileID: 2278857375154982592, guid: e0358359e9bc5cd44b5674ed32c9bf62, type: 3}
+  - {fileID: 6426833949933458567, guid: d58c5c108964dc14297d34af1be4c8d8, type: 3}
+  - {fileID: 2347802323947658802, guid: 487a6bd67ce146b428e0d8aba5ff7f13, type: 3}
   spawnPoints:
   - {fileID: 136548984}
   - {fileID: 540564784}
@@ -13380,6 +13382,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_TrackingStateInput.m_Action.m_SingletonActionBindings.Array.data[0].m_Id
       value: 5726c7b6-6243-4b04-ba90-a643507d6109
+      objectReference: {fileID: 0}
+    - target: {fileID: 4403629890474969381, guid: 37ed69d570284274a9ffed7a16f23f56,
+        type: 3}
+      propertyPath: m_RequestedTrackingOriginMode
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6695339745673377995, guid: 37ed69d570284274a9ffed7a16f23f56,
         type: 3}

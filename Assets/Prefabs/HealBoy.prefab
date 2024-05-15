@@ -184,6 +184,7 @@ MonoBehaviour:
   health: 100
   moveSpeed: 1
   damage_audio: {fileID: 8300000, guid: edaa55fe374b2b0438c2fe4377cc00ef, type: 3}
+  heal_audio: {fileID: 8300000, guid: 2d73d6dfff8d49147ac6ec8fe73911ba, type: 3}
 --- !u!65 &6268992306270274482
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -217,7 +218,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ba981bedbe2cf854ea6dcd6c0324cbfe, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
