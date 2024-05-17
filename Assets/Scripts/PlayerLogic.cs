@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerLogic : MonoBehaviour
 {
     public float health = 100f;
+    public float score = 0f;
     public bool isPlayerDead = false;
     // Start is called before the first frame update
     void Start()
