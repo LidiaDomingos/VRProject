@@ -6,6 +6,7 @@ TagManager:
   tags:
   - weapon
   - Enemy
+  - Heal
   layers:
   - Default
   - TransparentFX

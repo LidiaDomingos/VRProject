@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     public TextMeshProUGUI WaveCount;
     public SceneTransitionManager sceneScript;
 
-    private int totalWaves = 2; 
+    private int totalWaves = 5; 
     private int baseEnemiesPerWave = 2; 
     private int enemiesPerWave; 
     private int currentWave = 1;
@@ -25,7 +25,7 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        WaveCount.text = (currentWave).ToString();
+        WaveCount.text = "Wave: " + (currentWave - 1).ToString();
 
         if (enemiesDefeated >= enemiesPerWave)
         {
@@ -83,6 +83,6 @@ public class SpawnManager : MonoBehaviour
 
     public void EnemyDefeated()
     {
-        enemiesDefeated= enemiesDefeated+1;
+        enemiesDefeated = enemiesDefeated + 1;
     }
 }

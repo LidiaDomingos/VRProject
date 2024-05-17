@@ -10,7 +10,6 @@ public class Enemy : MonoBehaviour
     public float detectionRange = 10f; 
     public float detectionAttackRange = 3f; 
     public float health = 100f; 
-    public GameObject enemy;
     public Animator animator;
     private bool isDead;
     public Renderer[] renderers;
@@ -21,6 +20,7 @@ public class Enemy : MonoBehaviour
 
     public AudioClip death_audio;
     public AudioClip damage_audio;
+    public AudioClip punch_audio;
     private AudioSource audioSource;
 
     private void Start()
@@ -42,7 +42,7 @@ public class Enemy : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (health <= 0 && !isDead){
+        if (health <= 0f && !isDead){
             animator.SetTrigger("Death");
             audioSource.PlayOneShot(death_audio);
             isDead = true;
@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
             {
                 spawnManager.EnemyDefeated();
             }
-            Destroy(enemy, 3f);
+            Destroy(gameObject, 1.5f);
         }
         else if (!isDead){
             if (Vector3.Distance(transform.position, player.position) <= detectionRange)
@@ -71,11 +71,14 @@ public class Enemy : MonoBehaviour
             }
             if (Vector3.Distance(transform.position, player.position) <= detectionAttackRange){
                 cooldownTimer -= Time.deltaTime;
-                if (cooldownTimer <= 0)
+                if (cooldownTimer <= 0f)
                 {
-                    player.GetComponent<PlayerLogic>().health -= 10;
-                    cooldownTimer = 5;
+                    if (!player.GetComponent<PlayerLogic>().isPlayerDead){
+                        player.GetComponent<PlayerLogic>().health -= 10f;
+                    }
+                    cooldownTimer = 5f;
                     animator.SetTrigger("Attack");
+                    audioSource.PlayOneShot(punch_audio);
                 }
             }
 
@@ -85,12 +88,13 @@ public class Enemy : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
-        if (collider.CompareTag("weapon"))
+        if (collider.CompareTag("weapon") && !isDead)
         {   
             animator.SetTrigger("Hit");
-            health = health - 25;
+            health = health - 25f;
             audioSource.PlayOneShot(damage_audio);
             StartCoroutine(FlashRed());
+            Destroy(collider.gameObject);
         }
     }
 
