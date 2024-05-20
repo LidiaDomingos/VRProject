@@ -3,3 +3,7 @@ Player2, 20
 Player3, 30
 Mmgb, 10
 Lidia, 10
+Rodrigo, 10
+Ffgcc, 10
+Ghc, 10
+hoj, 10
