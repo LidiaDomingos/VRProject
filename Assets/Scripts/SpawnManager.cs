@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class SpawnManager : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class SpawnManager : MonoBehaviour
     public TextMeshProUGUI WaveCount;
     public TextMeshProUGUI ScoreCount;
     public SceneTransitionManager sceneScript;
+    public XRRayInteractor leftRayInteractor;
+    public XRRayInteractor rightRayInteractor;
 
     private int totalWaves = 5; 
     private int baseEnemiesPerWave = 2; 
@@ -21,39 +24,72 @@ public class SpawnManager : MonoBehaviour
     private int enemiesSpawned = 0;
     private int enemiesDefeated = 0;
 
+    public GameObject initGame;
+    public GameObject HealthBar;
+
+    private bool canInit = false;
+
     private bool End = false;
     void Start()
     {
+        initGame.SetActive(true);
+        leftRayInteractor.gameObject.SetActive(true);
+        rightRayInteractor.gameObject.SetActive(true);
+    }
+
+    public void NormalMode(){
+        initGame.SetActive(false);
+        totalWaves = 5;
+        canInit = true;
         StartNextWave();
+        HealthBar.SetActive(true);
+        leftRayInteractor.gameObject.SetActive(false);
+        rightRayInteractor.gameObject.SetActive(false);
+    }
+
+    public void InfinityMode(){
+        initGame.SetActive(false);
+        totalWaves = 1000;
+        canInit = true;
+        StartNextWave();
+        HealthBar.SetActive(true);
+        leftRayInteractor.gameObject.SetActive(false);
+        rightRayInteractor.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        WaveCount.text = "WAVE: " + (currentWave - 1).ToString();
-        ScoreCount.text = "SCORE: " + (player.score).ToString();
+        if (canInit) {
+            WaveCount.text = "WAVE: " + (currentWave - 1).ToString();
+            ScoreCount.text = "SCORE: " + (player.score).ToString();
 
-        if (!End){
-            if (enemiesDefeated >= enemiesPerWave)
-            {
-                if (currentWave <= totalWaves)
+            if (!End){
+                if (enemiesDefeated >= enemiesPerWave)
                 {
-                    StartNextWave();
-                }
-                else {
-                    if (!End){
-                        End = true;
-                        winScreen.SetActive(true);
+                    if (currentWave <= totalWaves)
+                    {
+                        StartNextWave();
+                    }
+                    else {
+                        if (!End){
+                            End = true;
+                            winScreen.SetActive(true);
+                            //sceneScript.GoToSceneAsync(0);
+                        }
                     }
                 }
             }
-        }
 
-        if (player.isPlayerDead & !End){
-            loseScreen.SetActive(true);
-            End = true;
+            if (player.isPlayerDead & !End){
+                loseScreen.SetActive(true);
+                End = true;
+                //sceneScript.GoToSceneAsync(0);
+            }
         }
     
     }
+
+    
 
     void StartNextWave()
     {
