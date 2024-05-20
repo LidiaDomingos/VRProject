@@ -6,8 +6,12 @@ using TMPro;
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] enemyPrefabs;
+    public GameObject winScreen;
+    public GameObject loseScreen;
+    public PlayerLogic player;
     public Transform[] spawnPoints;
     public TextMeshProUGUI WaveCount;
+    public TextMeshProUGUI ScoreCount;
     public SceneTransitionManager sceneScript;
 
     private int totalWaves = 5; 
@@ -25,22 +29,29 @@ public class SpawnManager : MonoBehaviour
 
     void Update()
     {
-        WaveCount.text = "Wave: " + (currentWave - 1).ToString();
+        WaveCount.text = "WAVE: " + (currentWave - 1).ToString();
+        ScoreCount.text = "SCORE: " + (player.score).ToString();
 
-        if (enemiesDefeated >= enemiesPerWave)
-        {
-            if (currentWave <= totalWaves)
+        if (!End){
+            if (enemiesDefeated >= enemiesPerWave)
             {
-                StartNextWave();
-            }
-            else {
-                if (!End){
-                    sceneScript.GoToSceneAsync(0);
-                    End = true;
+                if (currentWave <= totalWaves)
+                {
+                    StartNextWave();
+                }
+                else {
+                    if (!End){
+                        End = true;
+                        winScreen.SetActive(true);
+                    }
                 }
             }
         }
 
+        if (player.isPlayerDead & !End){
+            loseScreen.SetActive(true);
+            End = true;
+        }
     
     }
 
