@@ -9,6 +9,7 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] enemyPrefabs;
     public GameObject winScreen;
     public GameObject loseScreen;
+    public GameObject keyboard;
     public PlayerLogic player;
     public Transform[] spawnPoints;
     public TextMeshProUGUI WaveCount;
@@ -74,6 +75,8 @@ public class SpawnManager : MonoBehaviour
                         if (!End){
                             End = true;
                             winScreen.SetActive(true);
+                            leftRayInteractor.gameObject.SetActive(true);
+                            rightRayInteractor.gameObject.SetActive(true);
                             //sceneScript.GoToSceneAsync(0);
                         }
                     }
@@ -81,7 +84,10 @@ public class SpawnManager : MonoBehaviour
             }
 
             if (player.isPlayerDead & !End){
+
                 loseScreen.SetActive(true);
+                leftRayInteractor.gameObject.SetActive(true);
+                rightRayInteractor.gameObject.SetActive(true);
                 End = true;
                 //sceneScript.GoToSceneAsync(0);
             }
@@ -131,5 +137,10 @@ public class SpawnManager : MonoBehaviour
     public void EnemyDefeated()
     {
         enemiesDefeated = enemiesDefeated + 1;
+    }
+
+    public void GoToMenu()
+    {
+        sceneScript.GoToSceneAsync(0);
     }
 }

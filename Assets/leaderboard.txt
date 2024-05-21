@@ -3,3 +3,5 @@ Player2, 20
 Player3, 30
 Mmgb, 10
 Lidia, 10
+Lin, 10
+Hgnzs, 10
