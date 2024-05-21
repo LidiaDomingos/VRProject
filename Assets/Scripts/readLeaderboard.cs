@@ -71,9 +71,15 @@ public class readLeaderboard : MonoBehaviour
                 }
             }
             var listaOrdenada = listaDeTuplas.OrderByDescending(tupla => tupla.Item2).ToList();
+            int cont = 1;
             foreach (var tupla in listaOrdenada)
             {
+                if (cont > 5)
+                {
+                    break;
+                }
                 leaderboardText.text += $"{tupla.Item1}: {tupla.Item2}\n";
+                cont++;
             }
         }
         else
