@@ -1,7 +1,12 @@
-Player1, 10
-Player2, 20
-Player3, 30
-Mmgb, 10
 Lidia, 10
 Lin, 10
-Hgnzs, 10
+Luciano, 10
+Pip, 135
+
+Test, 20
+
+Bia, 45
+
+Yyg, 0
+
+ThiagoGameplays, 330
