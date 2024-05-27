@@ -16,9 +16,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (player.health <= 0 & !endOfGame & player.isPlayerDead){
-            sceneScript.GoToSceneAsync(0);
-            endOfGame = true;
-        }
+        // if (player.health <= 0 & !endOfGame & player.isPlayerDead){
+        //     sceneScript.GoToSceneAsync(0);
+        //     endOfGame = true;
+        // }
     }
 }

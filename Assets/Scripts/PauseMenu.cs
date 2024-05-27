@@ -3,17 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class PauseMenu : MonoBehaviour
 {
     public GameObject wristUI;
+    public XRRayInteractor leftRayInteractor;
+    public XRRayInteractor rightRayInteractor;
 
-    public bool activeWristUI = true;
-    //public XRRayInteractor rayInteractor; 
+    public SceneTransitionManager sceneScript;
+
+    public bool activeWristUI = false;
+
     // Start is called before the first frame  update
     void Start()
     {
-        DisplayWristUi();
+        //DisplayWristUi();
     }
 
     public void PauseButtonPressed(InputAction.CallbackContext context)
@@ -34,11 +39,14 @@ public class PauseMenu : MonoBehaviour
             activeWristUI = true;
             Time.timeScale = 0;
         }
+        leftRayInteractor.gameObject.SetActive(activeWristUI);
+        rightRayInteractor.gameObject.SetActive(activeWristUI);
         wristUI.SetActive(activeWristUI);
     }
 
     public void RestartGame(){
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Time.timeScale = 1;
+        sceneScript.GoToSceneAsync(1);
     }
 
     public void ExitGame(){

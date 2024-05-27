@@ -68,6 +68,7 @@ public class HealBoy : MonoBehaviour
         if (collider.CompareTag("weapon") & !isDead)
         {   
             health = health - 100f;
+            player.GetComponent<PlayerLogic>().score -= 5;
             isDead = true;
             audioSource.PlayOneShot(damage_audio);
             animator.SetTrigger("Death");

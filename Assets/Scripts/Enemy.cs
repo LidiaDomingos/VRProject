@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour
         if (health <= 0f && !isDead){
             animator.SetTrigger("Death");
             audioSource.PlayOneShot(death_audio);
+            player.GetComponent<PlayerLogic>().score += 10;
             isDead = true;
             SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
             if (spawnManager != null)

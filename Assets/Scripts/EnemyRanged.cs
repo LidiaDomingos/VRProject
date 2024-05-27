@@ -54,6 +54,7 @@ public class EnemyRanged : MonoBehaviour
         if (health <= 0f && !isDead){
             audioSource.PlayOneShot(death_audio);
             animator.SetTrigger("Death");
+            player.GetComponent<PlayerLogic>().score += 10;
             isDead = true;
             SpawnManager spawnManager = FindObjectOfType<SpawnManager>();
             if (spawnManager != null)

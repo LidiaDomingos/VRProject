@@ -79,6 +79,8 @@ namespace Keyboard
         private bool specialCharactersActive;
         private float lastShiftClickTime;
         private float shiftDoubleClickDelay = 0.5f;
+        public PlayerLogic player;
+        public SceneTransitionManager sceneScript;
 
         public UnityEvent onKeyboardModeChanged;
 
@@ -342,11 +344,12 @@ namespace Keyboard
             {
                 using (StreamWriter writer = new StreamWriter(filePath, true))
                 {
-                    string textoNovo = outputField.text + ", " + 10; // Aqui você pode adicionar o número que desejar, estou usando "10" como exemplo
+                    string textoNovo = "\n" + outputField.text + ", " + player.score; // Aqui você pode adicionar o número que desejar, estou usando "10" como exemplo
                     writer.WriteLine(textoNovo); // Escreve o texto novo no arquivo
                 }
             }
             gameObject.SetActive(false);
+            sceneScript.GoToSceneAsync(0);
         }
 
 
